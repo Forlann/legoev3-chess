@@ -1,30 +1,38 @@
-from ev3dev2.motor import MediumMotor, OUTPUT_A, OUTPUT_B, OUTPUT_C
-from ev3dev2.motor import SpeedPercent
-from time import sleep
+from pybricks.hubs import EV3Brick
+from pybricks.ev3devices import Motor
+from pybricks.parameters import Port
+from pybricks.tools import wait
+import keyboard  # biblioteca para capturar eventos do teclado
 
-# Motores conectados nas portas A, B e C
-motor_garra = MediumMotor(OUTPUT_A)     # abre/fecha
-motor_elevador = MediumMotor(OUTPUT_B)  # sobe/desce
-motor_extra = MediumMotor(OUTPUT_C)     # outra função (ex: rotação)
+# Configuração dos motores
+motor_garra = Motor(Port.A)
+motor_carrinho = Motor(Port.B)
 
-# Funções da garra
-def abrir_garra():
-    motor_garra.on_for_degrees(SpeedPercent(20), 90)
-    
-def fechar_garra():
-    motor_garra.on_for_degrees(SpeedPercent(20), -90)
+# Função para mover a garra
+def mover_garra(direcao):
+    if direcao == 'abrir':
+        motor_garra.run_target(500, 90)  # exemplo de abrir a garra
+    elif direcao == 'fechar':
+        motor_garra.run_target(500, 0)  # exemplo de fechar a garra
 
-def subir():
-    motor_elevador.on_for_degrees(SpeedPercent(30), 180)
+# Função para mover o carrinho
+def mover_carrinho(direcao):
+    if direcao == 'frente':
+        motor_carrinho.run_time(500, 1000)  # exemplo de mover para frente
+    elif direcao == 'traseira':
+        motor_carrinho.run_time(500, -1000)  # exemplo de mover para trás
 
-def descer():
-    motor_elevador.on_for_degrees(SpeedPercent(30), -180)
-
-# Teste simples
-abrir_garra()
-sleep(1)
-fechar_garra()
-sleep(1)
-subir()
-sleep(1)
-descer()
+# Loop para capturar comandos do teclado
+while True:
+    if keyboard.is_pressed('w'):
+        mover_carrinho('frente')
+        wait(100)  # pequeno delay para evitar múltiplas capturas
+    elif keyboard.is_pressed('s'):
+        mover_carrinho('traseira')
+        wait(100)
+    elif keyboard.is_pressed('a'):
+        mover_garra('abrir')
+        wait(100)
+    elif keyboard.is_pressed('d'):
+        mover_garra('fechar')
+        wait(100)
