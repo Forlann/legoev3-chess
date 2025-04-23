@@ -1,38 +1,38 @@
 from pybricks.hubs import EV3Brick
-from pybricks.ev3devices import Motor
-from pybricks.parameters import Port
-from pybricks.tools import wait
-import keyboard  # biblioteca para capturar eventos do teclado
+from pybricks.ev3devices import Motor, ColorSensor
+from pybricks.parameters import Port, Color
 
-# Configuração dos motores
-motor_garra = Motor(Port.A)
-motor_carrinho = Motor(Port.B)
+# Inicialização dos dispositivos
+ev3 = EV3Brick()
+motor_rodas = Motor(Port.A)
+motor_garra = Motor(Port.B)
+motor_eixo = Motor(Port.C)
+sensor_cor = ColorSensor(Port.S1)
 
-# Função para mover a garra
-def mover_garra(direcao):
-    if direcao == 'abrir':
-        motor_garra.run_target(500, 90)  # exemplo de abrir a garra
-    elif direcao == 'fechar':
-        motor_garra.run_target(500, 0)  # exemplo de fechar a garra
+# Função para mover o robô para frente
+def mover_para_frente():
+    motor_rodas.run_time(500, 1000)  # Move as rodas para frente por 500ms
 
-# Função para mover o carrinho
-def mover_carrinho(direcao):
-    if direcao == 'frente':
-        motor_carrinho.run_time(500, 1000)  # exemplo de mover para frente
-    elif direcao == 'traseira':
-        motor_carrinho.run_time(500, -1000)  # exemplo de mover para trás
+# Função para girar o robô no próprio eixo
+def girar_eixo():
+    motor_eixo.run_time(500, 500)  # Gira o eixo por 500ms
 
-# Loop para capturar comandos do teclado
+# Função para abrir ou fechar a garra
+def acao_garra(abrir=True):
+    if abrir:
+        motor_garra.run_target(1000, 90)  # Abre a garra
+    else:
+        motor_garra.run_target(1000, 0)  # Fecha a garra
+
+# Loop principal
 while True:
-    if keyboard.is_pressed('w'):
-        mover_carrinho('frente')
-        wait(100)  # pequeno delay para evitar múltiplas capturas
-    elif keyboard.is_pressed('s'):
-        mover_carrinho('traseira')
-        wait(100)
-    elif keyboard.is_pressed('a'):
-        mover_garra('abrir')
-        wait(100)
-    elif keyboard.is_pressed('d'):
-        mover_garra('fechar')
-        wait(100)
+    cor_detectada = sensor_cor.color()
+
+    if cor_detectada == Color.RED:
+        girar_eixo()
+    elif cor_detectada == Color.BLUE:
+        acao_garra(abrir=True)
+    elif cor_detectada == Color.GREEN:
+        girar_eixo()
+    else:
+        mover_para_frente()
