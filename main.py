@@ -1,21 +1,16 @@
+#!/usr/bin/env pybricks-micropython
+
 from pybricks.hubs import EV3Brick
 from pybricks.ev3devices import Motor, ColorSensor
-from pybricks.parameters import Port, Color
+from pybricks.parameters import Port, Color, Stop
+import time
 
 # Inicialização dos dispositivos
 ev3 = EV3Brick()
-motor_rodas = Motor(Port.A)
-motor_garra = Motor(Port.B)
-motor_eixo = Motor(Port.C)
+motor_garra = Motor(Port.A)
+motor_y = Motor(Port.B)
+motor_x = Motor(Port.C)
 sensor_cor = ColorSensor(Port.S1)
-
-# Função para mover o robô para frente
-def mover_para_frente():
-    motor_rodas.run_time(500, 1000)  # Move as rodas para frente por 500ms
-
-# Função para girar o robô no próprio eixo
-def girar_eixo():
-    motor_eixo.run_time(500, 500)  # Gira o eixo por 500ms
 
 # Função para abrir ou fechar a garra
 def acao_garra(abrir=True):
@@ -24,15 +19,53 @@ def acao_garra(abrir=True):
     else:
         motor_garra.run_target(1000, 0)  # Fecha a garra
 
+# Funções para movimentação dos eixos
+def eixo_y_cima():
+    motor_y.run_angle(300, 360, then=Stop.HOLD, wait=True)
+
+def eixo_y_baixo():
+    motor_y.run_angle(300, -360, then=Stop.HOLD, wait=True)
+
+def eixo_x_right():
+    motor_x.run_angle(300, 360, then=Stop.HOLD, wait=True)
+
+def eixo_x_left():
+    motor_x.run_angle(300, -360, then=Stop.HOLD, wait=True)
+
+# Função para executar uma sequência de ações com base na cor detectada
+def acao_baseada_na_cor(cor):
+    if cor == Color.RED:
+        # Exemplo de sequência para a cor vermelha
+        print("Cor vermelha detectada - Executando sequência")
+        acao_garra(abrir=True)
+        time.sleep(1)
+        acao_garra(abrir=False)
+        eixo_x_right()
+        time.sleep(1)
+        eixo_x_left()
+        time.sleep(1)
+        eixo_y_cima()
+        time.sleep(1)
+        eixo_y_baixo()
+        time.sleep(1)
+    elif cor == Color.BLUE:
+        # Exemplo de sequência para a cor azul
+        print("Cor azul detectada - Executando sequência")
+        eixo_x_right()
+        time.sleep(1)
+        eixo_x_left()
+        time.sleep(1)
+    elif cor == Color.GREEN:
+        # Exemplo de sequência para a cor verde
+        print("Cor verde detectada - Executando sequência")
+        eixo_y_cima()
+        time.sleep(1)
+        eixo_y_baixo()
+        time.sleep(1)
+
 # Loop principal
 while True:
     cor_detectada = sensor_cor.color()
-
-    if cor_detectada == Color.RED:
-        girar_eixo()
-    elif cor_detectada == Color.BLUE:
-        acao_garra(abrir=True)
-    elif cor_detectada == Color.GREEN:
-        girar_eixo()
-    else:
-        mover_para_frente()
+    print("Cor detectada:", cor_detectada)
+    acao_baseada_na_cor(cor_detectada)
+    time.sleep(0.5)  # Evita leituras excessivas
