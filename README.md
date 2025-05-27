@@ -37,9 +37,8 @@ O código implementa a lógica para abrir/fechar a garra e mover os eixos com ba
 ### Sequência de Ações
 
 * **Cor Vermelha**: Sobe a garra, eixo x vai para a direita, eixo y desce, fecha a garra, sobe o eixo y, eixo x vai para esquerda(volta ao centro), abre a garra.
-* **Cor Amarelo**: Movimenta o eixo X para a direita e para a esquerda.
-* **Cor Verde**: Move o eixo Y para cima e para baixo.
-
+* **Cor Amarelo**: eixo y desce, fecha a garra, sobe o eixo y, abre a garra.
+* **Cor Verde**: Sobe a garra, eixo x vai para a esquerda, eixo y desce, fecha a garra, sobe o eixo y, eixo x vai para a direita(volta ao centro, abre a garra). 
 ## Como Rodar o Código
 
 1. **Instale o Pybricks MicroPython** no seu Lego EV3.
