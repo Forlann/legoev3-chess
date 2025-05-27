@@ -2,7 +2,7 @@
 
 ## Descrição
 
-Este projeto foi desenvolvido para a disciplina de Robótica da faculdade, utilizando o **Lego EV3 Mindstorm**. O objetivo do projeto é criar uma garra robótica que executa movimentos de acordo com a cor detectada por um sensor de cor. A garra pode abrir e fechar, e a movimentação é controlada por três eixos.
+Este projeto foi desenvolvido para a disciplina de Robótica da faculdade Impacta Tecnologia, utilizando o **Lego EV3 Mindstorm**. O objetivo do projeto é criar uma garra robótica que executa 3 movimentos de acordo com uma das 3 cores detectadas(Vermelho, Verde e Amarelo) por um sensor de cor. A garra pode abrir e fechar, e a movimentação é controlada por três eixos.
 
 O código implementado no EV3Brick permite que o robô execute diferentes sequências de movimentos baseadas na cor do objeto detectado pelo sensor. As cores que são reconhecidas são **vermelho**, **azul** e **verde**, e para cada cor há uma sequência de movimentos específica.
 
@@ -11,14 +11,13 @@ O código implementado no EV3Brick permite que o robô execute diferentes sequê
 * Lego EV3 Mindstorm
 * Pybricks MicroPython
 * Sensor de Cor (Porta S1)
-* Motores para movimentação da garra e dos eixos X, Y e Z
+* Motores para movimentação da garra e dos eixos X e Y
 
 ## Estrutura do Projeto
 
 * **Motor A:** Controla o motor da garra
-* **Motor B:** Controla o eixo Z
+* **Motor B:** Controla o eixo Y
 * **Motor C:** Controla o eixo X
-* **Motor D:** Controla o eixo Y
 * **Sensor S1:** Detecta a cor do objeto
 
 ## Como Funciona
@@ -33,11 +32,12 @@ O código implementa a lógica para abrir/fechar a garra e mover os eixos com ba
 * **eixo\_x\_right()**: Move o eixo X para a direita.
 * **eixo\_x\_left()**: Move o eixo X para a esquerda.
 * **acao\_baseada\_na\_cor(cor)**: Executa uma sequência de movimentos com base na cor detectada.
+* **sobe\_garra\_amarelo()**: Sobe o eixo y quando dectectado a cor amarela
 
 ### Sequência de Ações
 
-* **Cor Vermelha**: Abre e fecha a garra, move o eixo Y para cima e para baixo, e o eixo X para a direita e esquerda.
-* **Cor Azul**: Movimenta o eixo X para a direita e para a esquerda.
+* **Cor Vermelha**: Sobe a garra, eixo x vai para a direita, eixo y desce, fecha a garra, sobe o eixo y, eixo x vai para esquerda(volta ao centro), abre a garra.
+* **Cor Amarelo**: Movimenta o eixo X para a direita e para a esquerda.
 * **Cor Verde**: Move o eixo Y para cima e para baixo.
 
 ## Como Rodar o Código
@@ -49,9 +49,15 @@ O código implementa a lógica para abrir/fechar a garra e mover os eixos com ba
    * Eixo X na porta C
    * Eixo Y na porta D
    * Sensor de cor na porta S1
-3. **Carregue o código no seu EV3** e execute.
-4. **Observe a detecção das cores** e a execução da sequência de movimentos com base na cor detectada.
+
+3. **Deixe a garra aberta** antes de rodar o código
+4. **Carregue o código no seu EV3** e execute.
+5. **Observe a detecção das cores** e a execução da sequência de movimentos com base na cor detectada.
 
 ## Grupo/Colaboradores
+
+Lista:
+Henrique Diego
+
 
 Se você quiser contribuir com o projeto, fique à vontade para criar um *fork*, fazer alterações e enviar um *pull request*.
