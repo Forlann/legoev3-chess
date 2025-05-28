@@ -1,4 +1,6 @@
-![image](https://github.com/user-attachments/assets/aa9cbaf1-70f8-4080-b9a9-a803ddfcd8df)# Projeto de Garra Robótica com Lego EV3 Mindstorm
+![image](https://github.com/user-attachments/assets/aa9cbaf1-70f8-4080-b9a9-a803ddfcd8df)
+
+# Projeto de Garra Robótica com Lego EV3 Mindstorm
 
 ## Descrição
 
