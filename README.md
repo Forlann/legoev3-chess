@@ -59,5 +59,6 @@ O código implementa a lógica para abrir/fechar a garra e mover os eixos com ba
 
  - Kauê Forlan - 2202416
  - Henrique Diego
+ - Gustavo Rodrigues - 2302446
 
 Se você quiser contribuir com o projeto, fique à vontade para criar um *fork*, fazer alterações e enviar um *pull request*.
