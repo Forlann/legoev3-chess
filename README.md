@@ -1,4 +1,4 @@
-# Projeto de Garra Robótica com Lego EV3 Mindstorm
+![image](https://github.com/user-attachments/assets/aa9cbaf1-70f8-4080-b9a9-a803ddfcd8df)# Projeto de Garra Robótica com Lego EV3 Mindstorm
 
 ## Descrição
 
@@ -55,8 +55,7 @@ O código implementa a lógica para abrir/fechar a garra e mover os eixos com ba
 
 ## Grupo/Colaboradores
 
-Lista:
-Henrique Diego
-
+ - Kauê Forlan - 2202416
+ - Henrique Diego
 
 Se você quiser contribuir com o projeto, fique à vontade para criar um *fork*, fazer alterações e enviar um *pull request*.
